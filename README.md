@@ -1,6 +1,11 @@
-# Welcome to your Expo app 👋
+# Notes Homepage UI 👋
+Design figma by @ux.nurnabi
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+
+
+![image](https://github.com/ezzeddinp/clone-notes-app-homepage/assets/87559497/ce6a52a8-9a42-4555-8112-9498c2531bce)
+
 
 ## Get started
 

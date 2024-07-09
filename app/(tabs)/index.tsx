@@ -1,56 +1,59 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { Image, StyleSheet, Platform, View, Text, TouchableOpacity } from 'react-native';
+import { BlurView } from 'expo-blur';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import Category from '@/components/Category';
+import Card from '@/components/Card';
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <SafeAreaView>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, marginBottom: -10, paddingTop: 40 }}>
+        <View style={{ flexDirection: 'column' }}>
+          <Text style={styles.textHeader}>
+            My
+          </Text>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text style={styles.textHeader}>
+              Notes
+            </Text>
+          </View>
+        </View>
+        <View style={{ paddingRight: 130}}>
+          <Image
+            source={require('../../assets/images/welcomeProfile.png')}
+            style={[styles.image]}
+            resizeMode="cover"
+          />
+        </View>
+        <TouchableOpacity>
+          <BlurView intensity={30} style={styles.menuStyle}>
+            <MaterialCommunityIcons name="dots-square" size={20} color="white" />
+          </BlurView>
+        </TouchableOpacity>
+      </View>
+      {/* <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
+        <Text style={styles.textHeader}>
+          Notes
+        </Text>
+      </View> */}
+      {/* Category Session */}
+      <View style={styles.categoryContainer}>
+        <Category />
+      </View>
+
+      <Card />
+      {/* <MyLecture /> */}
+    </SafeAreaView >
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 3
+  },
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -66,5 +69,26 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     position: 'absolute',
+  },
+  textHeader: {
+    color: 'white',
+    fontSize: 40,
+    fontWeight: '600'
+  },
+  menuStyle: {
+    backgroundColor: '#151718',
+    borderRadius: 100,
+    padding: 17,
+    paddingHorizontal: 17,
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden'
+  },
+  categoryContainer: {
+    paddingVertical: 20
+  },
+  image: {
+    width: 80,
+    height: 80
   },
 });
